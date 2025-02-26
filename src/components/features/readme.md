@@ -1,0 +1,1 @@
+✅ Functional UI blocks (Web3, Authentication, etc.)
