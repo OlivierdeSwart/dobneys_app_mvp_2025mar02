@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LoginButton from "./login_button";
 
 export default function Navbar() {
     return (
@@ -14,9 +15,10 @@ export default function Navbar() {
             </div>
 
             {/* Right: Wallet Connect Button */}
-            <button className="border-black border-2 rounded-md px-4 py-2 hover:bg-gray-200">
+            {/* <button className="border-black border-2 rounded-md px-4 py-2 hover:bg-gray-200">
                 Login to Wallet
-            </button>
+            </button> */}
+            <LoginButton/>
         </nav>
     );
 }

@@ -24,5 +24,31 @@
     "certificate_1": "https://example.com/certificates/nft_001_auth.pdf",
     "other_1": "https://example.com/documents/nft_001_proof.txt",
     "previous_owners": []
+  },
+  {
+    "nft_id": "NFT_1740591403039",
+    "owner_wallet": "",
+    "seller_wallet": null,
+    "ledger_id": "nft_art_auction_ledger",
+    "meta_data": "{\"artist\":\"Unknown Artist\",\"medium\":\"Digital\",\"size\":\"Unknown\"}",
+    "description": "",
+    "photo_1": "",
+    "photo_2": "",
+    "certificate_1": "",
+    "other_1": "",
+    "previous_owners": []
+  },
+  {
+    "nft_id": "NFT_1740591776669",
+    "owner_wallet": "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
+    "seller_wallet": null,
+    "ledger_id": "nft_art_auction_ledger",
+    "meta_data": "{\"artist\":\"Unknown Artist\",\"medium\":\"Digital\",\"size\":\"Unknown\"}",
+    "description": "",
+    "photo_1": "",
+    "photo_2": "",
+    "certificate_1": "",
+    "other_1": "",
+    "previous_owners": []
   }
 ]
