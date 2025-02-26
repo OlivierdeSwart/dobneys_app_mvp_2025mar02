@@ -1,0 +1,28 @@
+[
+  {
+    "nft_id": "NFT_1740585892731",
+    "owner_wallet": "0xCurrentOwnerWallet",
+    "seller_wallet": null,
+    "ledger_id": "nft_art_auction_ledger",
+    "meta_data": "{\"artist\":\"John Doe\",\"medium\":\"Digital\",\"size\":\"5000x5000\"}",
+    "description": "A beautiful digital artwork created by John Doe.",
+    "photo_1": "https://example.com/images/nft_001_main.jpg",
+    "photo_2": "https://example.com/images/nft_001_alt1.jpg",
+    "certificate_1": "https://example.com/certificates/nft_001_auth.pdf",
+    "other_1": "https://example.com/documents/nft_001_proof.txt",
+    "previous_owners": []
+  },
+  {
+    "nft_id": "NFT_1740586042781",
+    "owner_wallet": "0xCurrentOwnerWallet",
+    "seller_wallet": null,
+    "ledger_id": "nft_art_auction_ledger",
+    "meta_data": "{\"artist\":\"John Doe\",\"medium\":\"Digital\",\"size\":\"5000x5000\"}",
+    "description": "A beautiful digital artwork created by John Doe.",
+    "photo_1": "https://example.com/images/nft_001_main.jpg",
+    "photo_2": "https://example.com/images/nft_001_alt1.jpg",
+    "certificate_1": "https://example.com/certificates/nft_001_auth.pdf",
+    "other_1": "https://example.com/documents/nft_001_proof.txt",
+    "previous_owners": []
+  }
+]

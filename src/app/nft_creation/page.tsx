@@ -1,14 +1,14 @@
 'use client'
 
-function App() {
+function NftCreation() {
 
   return (
     <>
     <h1 className="text-center p-10 text-3xl font-bold">
-        XRPL NFT Marketplace Homepage
+        NFT Creation
     </h1>
     </>
   )
 }
 
-export default App
+export default NftCreation
