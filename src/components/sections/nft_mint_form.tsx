@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { getAddress } from "@gemwallet/api";
 
-const NFTCreationForm = () => {
+const NFTMintForm = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     nft_id: `NFT_${Date.now()}`,
@@ -136,4 +136,4 @@ const NFTCreationForm = () => {
   );
 };
 
-export default NFTCreationForm;
+export default NFTMintForm;
