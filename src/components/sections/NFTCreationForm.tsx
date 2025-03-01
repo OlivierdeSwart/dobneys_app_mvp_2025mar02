@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { getAddress, isInstalled } from "@gemwallet/api";
 import { createHash } from "crypto";
+import MerkleRootSubmission from "./NFTMerkleRootSubmission";
 
 const NFTCreationForm = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
@@ -89,12 +90,15 @@ const NFTCreationForm = () => {
 
   if (submitted) {
     return (
-      <div className="max-w-2xl mx-auto p-6 bg-green-100 rounded-lg shadow-md text-center">
-        <h2 className="text-xl font-bold mb-4">✅ NFT Created Successfully!</h2>
-        <p>Your NFT has been submitted. You can check the logs for more details.</p>
-        <pre className="text-left bg-white p-4 rounded shadow-md overflow-auto text-sm">{JSON.stringify(formData, null, 2)}</pre>
-        <pre className="text-left bg-white p-4 rounded shadow-md overflow-auto text-sm">Mock Merkle Tree Root: {formHash}</pre>
-      </div>
+      <>
+        <div className="max-w-2xl mx-auto p-6 bg-green-100 rounded-lg shadow-md text-center">
+          <h2 className="text-xl font-bold mb-4">✅ NFT Created Successfully!</h2>
+          <p>Your NFT has been submitted. You can check the logs for more details.</p>
+          <pre className="text-left bg-white p-4 rounded shadow-md overflow-auto text-sm">{JSON.stringify(formData, null, 2)}</pre>
+          <pre className="text-left bg-white p-4 rounded shadow-md overflow-auto text-sm">Mock Merkle Tree Root: {formHash}</pre>
+        </div>
+        <MerkleRootSubmission formHash={formHash} />
+      </>
     );
   }
 
