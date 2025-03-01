@@ -49,34 +49,34 @@
   },
   {
     "owner_wallet": "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
-    "nft_id": "NFT_1740854213069",
-    "nft_title": "Test Oli",
-    "description": "prachtige test man!!!",
+    "nft_id": "NFT_1740854475712",
+    "nft_title": "",
+    "description": "",
     "photo_1": null,
     "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
     "seller_wallet": "",
-    "artist_wallet": "blabla",
+    "artist_wallet": "",
     "meta_data": "",
     "previous_owner_1": "",
     "previous_owner_2": "",
     "other_1": "",
     "ledger_id": "",
-    "memo_id": "joeee"
+    "memo_id": ""
   },
   {
     "owner_wallet": "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
-    "nft_id": "NFT_1740854242366",
-    "nft_title": "awerg",
-    "description": "aweg",
-    "photo_1": {},
+    "nft_id": "NFT_1740854494421",
+    "nft_title": "",
+    "description": "",
+    "photo_1": null,
     "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
     "seller_wallet": "",
-    "artist_wallet": "aweg",
+    "artist_wallet": "",
     "meta_data": "",
     "previous_owner_1": "",
     "previous_owner_2": "",
     "other_1": "",
     "ledger_id": "",
-    "memo_id": "aweg"
+    "memo_id": ""
   }
 ]

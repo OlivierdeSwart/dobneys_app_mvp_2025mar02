@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getAddress, isInstalled } from "@gemwallet/api";
+import { createHash } from "crypto";
 
 const NFTCreationForm = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
@@ -22,6 +23,7 @@ const NFTCreationForm = () => {
     ledger_id: "",
     memo_id: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const checkWalletInstallation = async () => {
@@ -64,6 +66,8 @@ const NFTCreationForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Submitting NFT Data:", formData);
+    
     const response = await fetch("/api/addNFT", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -71,27 +75,21 @@ const NFTCreationForm = () => {
     });
 
     if (response.ok) {
-      alert("✅ NFT Created Successfully!");
-      setFormData({
-        owner_wallet: walletAddress || "",
-        nft_id: `NFT_${Date.now()}`,
-        nft_title: "",
-        description: "",
-        photo_1: null,
-        certificate_1: "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
-        seller_wallet: "",
-        artist_wallet: "",
-        meta_data: "",
-        previous_owner_1: "",
-        previous_owner_2: "",
-        other_1: "",
-        ledger_id: "",
-        memo_id: "",
-      });
+      setSubmitted(true);
     } else {
       alert("❌ Failed to create NFT.");
     }
   };
+
+  if (submitted) {
+    return (
+      <div className="max-w-2xl mx-auto p-6 bg-green-100 rounded-lg shadow-md text-center">
+        <h2 className="text-xl font-bold mb-4">✅ NFT Created Successfully!</h2>
+        <p>Your NFT has been submitted. You can check the logs for more details.</p>
+        <pre className="text-left bg-white p-4 rounded shadow-md overflow-auto text-sm">{JSON.stringify(formData, null, 2)}</pre>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-md">
