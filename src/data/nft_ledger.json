@@ -1,0 +1,50 @@
+[
+  {
+    "owner_wallet": "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
+    "nft_id": "NFT_1",
+    "nft_title": "Gilded Fractures Sculpture",
+    "description": "This NFT represents a physical sculpture, a bust with cracks filled with gold, symbolizing the art of kintsugi—turning imperfection into beauty.",
+    "photo_1": "http://localhost:3000/uploads/images/nft_1740592613651.jpg",
+    "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
+    "seller_wallet": "",
+    "artist_wallet": "",
+    "meta_data": "",
+    "previous_owner_1": "",
+    "previous_owner_2": "",
+    "other_1": "",
+    "ledger_id": "",
+    "memo_id": ""
+  },
+  {
+    "owner_wallet": "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
+    "nft_id": "NFT_2",
+    "nft_title": "Celebration Amidst Chaos",
+    "description": "This painting depicts a vibrant procession of people and musicians, blending tradition and movement in a lively, yet turbulent scene..",
+    "photo_1": "http://localhost:3000/uploads/images/painting1.jpg",
+    "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
+    "seller_wallet": "",
+    "artist_wallet": "",
+    "meta_data": "",
+    "previous_owner_1": "",
+    "previous_owner_2": "",
+    "other_1": "",
+    "ledger_id": "",
+    "memo_id": ""
+  },
+  {
+    "owner_wallet": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
+    "nft_id": "NFT_3",
+    "nft_title": "Warriors of Revolution",
+    "description": "This painting portrays three figures in military attire, exuding strength and determination. Their bold expressions and posture symbolize resilience and the spirit of revolution in a time of conflict.",
+    "photo_1": "http://localhost:3000/uploads/images/painting2.jpg",
+    "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
+    "seller_wallet": "",
+    "artist_wallet": "",
+    "meta_data": "",
+    "previous_owner_1": "",
+    "previous_owner_2": "",
+    "other_1": "",
+    "ledger_id": "",
+    "memo_id": ""
+  }
+]

@@ -7,7 +7,6 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 
 
 import { getConfig } from '@/lib/wagmi'
-import { GemWalletProvider } from '@/context/GemWalletContext'
 
 export function Providers(props: {
   children: ReactNode
