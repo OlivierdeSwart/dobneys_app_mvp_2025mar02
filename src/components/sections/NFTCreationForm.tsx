@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getAddress } from "@gemwallet/api";
+import { getAddress, isInstalled } from "@gemwallet/api";
 
 const NFTCreationForm = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [walletInstalled, setWalletInstalled] = useState<boolean | null>(null);
   const [formData, setFormData] = useState({
     owner_wallet: "",
     nft_id: `NFT_${Date.now()}`,
@@ -23,17 +24,33 @@ const NFTCreationForm = () => {
   });
 
   useEffect(() => {
-    const fetchWalletAddress = async () => {
-      const response = await getAddress();
-      if (response.type === "response" && response.result) {
-        const address = response.result.address;
-        if (address) {
-          setWalletAddress(address);
-          setFormData((prevData) => ({ ...prevData, owner_wallet: address }));
+    const checkWalletInstallation = async () => {
+      try {
+        const installationStatus = await isInstalled();
+        console.log("Is GemWallet installed?", installationStatus.result.isInstalled);
+        setWalletInstalled(installationStatus.result.isInstalled);
+        
+        if (installationStatus.result.isInstalled) {
+          const response = await getAddress();
+          console.log("Response from getAddress:", response);
+          
+          if (response.type === "response" && response.result) {
+            const address = response.result.address;
+            console.log("Extracted address:", address);
+            if (address) {
+              setWalletAddress(address);
+              setFormData((prevData) => ({ ...prevData, owner_wallet: address }));
+            }
+          }
+        } else {
+          console.warn("GemWallet is not installed.");
         }
+      } catch (error) {
+        console.error("Error checking GemWallet installation:", error);
       }
     };
-    fetchWalletAddress();
+
+    checkWalletInstallation();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -79,6 +96,9 @@ const NFTCreationForm = () => {
   return (
     <div className="max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-md">
       <h2 className="text-xl font-bold mb-4">Create a New NFT</h2>
+      {walletInstalled === false && (
+        <p className="text-red-500">⚠ GemWallet is not installed. Please install it.</p>
+      )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block font-semibold">NFT ID:</label>
