@@ -24,6 +24,7 @@ const NFTCreationForm = () => {
     memo_id: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [formHash, setFormHash] = useState<string | null>(null);
 
   useEffect(() => {
     const checkWalletInstallation = async () => {
@@ -67,6 +68,11 @@ const NFTCreationForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Submitting NFT Data:", formData);
+
+    // Compute SHA-256 hash
+    const hash = createHash("sha256").update(JSON.stringify(formData)).digest("hex");
+    console.log("SHA-256 Hash:", hash);
+    setFormHash(hash);
     
     const response = await fetch("/api/addNFT", {
       method: "POST",
@@ -87,6 +93,7 @@ const NFTCreationForm = () => {
         <h2 className="text-xl font-bold mb-4">✅ NFT Created Successfully!</h2>
         <p>Your NFT has been submitted. You can check the logs for more details.</p>
         <pre className="text-left bg-white p-4 rounded shadow-md overflow-auto text-sm">{JSON.stringify(formData, null, 2)}</pre>
+        <pre className="text-left bg-white p-4 rounded shadow-md overflow-auto text-sm">Mock Merkle Tree Root: {formHash}</pre>
       </div>
     );
   }
