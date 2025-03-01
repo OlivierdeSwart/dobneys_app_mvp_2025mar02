@@ -19,7 +19,7 @@ const NFTMerkleRootSubmission = ({ formHash }: Props) => {
         setStatus("Processing...");
 
         // Wallet Credentials (Use ENV variables in production)
-        const wallet = xrpl.Wallet.fromSeed("sEdSMWJBQpmN5zDrRnG4zoSEep3Thgt");
+        const wallet = xrpl.Wallet.fromSeed("sEdV92U1nvfj6GEvJF7tKYS2tuGkrf7");
 
         // XRPL Client
         const client = new xrpl.Client("wss://s.altnet.rippletest.net:51233");
@@ -30,7 +30,7 @@ const NFTMerkleRootSubmission = ({ formHash }: Props) => {
           TransactionType: "Payment",
           Account: wallet.address,
           Amount: "1", // 1 Drop (0.000001 XRP)
-          Destination: "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
+          Destination: "r4P6TraxPb3xDsSXiZv2Gx1GkKVDG1o46h",
           Memos: [
             {
               Memo: {
@@ -50,12 +50,15 @@ const NFTMerkleRootSubmission = ({ formHash }: Props) => {
         await client.disconnect();
 
         // Handle response safely
-        // if (tx.result.meta?.TransactionResult === "tesSUCCESS") {
-        if ((tx.result.meta as xrpl.TransactionMetadata)?.TransactionResult === "tesSUCCESS") {
+        if (typeof tx.result.meta === "object" && "TransactionResult" in tx.result.meta && tx.result.meta.TransactionResult === "tesSUCCESS") {
           setTxHash(signed.hash);
           setStatus("Transaction Successful ✅");
         } else {
-          setStatus(`Transaction Failed ❌: ${tx.result.meta?.TransactionResult || "Unknown error"}`);
+          const transactionResult = typeof tx.result.meta === "object" && "TransactionResult" in tx.result.meta 
+            ? tx.result.meta.TransactionResult 
+            : "Unknown error";
+          
+          setStatus(`Transaction Failed ❌: ${transactionResult}`);
         }
       } catch (error) {
         setStatus(`Error: ${error}`);
@@ -66,12 +69,20 @@ const NFTMerkleRootSubmission = ({ formHash }: Props) => {
   }, [formHash]);
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-blue-100 rounded-lg shadow-md text-center">
+    <div className="max-w-2xl mx-auto p-6 bg-blue-100 rounded-lg shadow-md text-center break-words">
       <h2 className="text-xl font-bold mb-4">📜 Merkle Root Submission</h2>
-      <p>Status: {status}</p>
+      <p className="break-words">Status: {status}</p>
       {txHash && (
-        <p>
-          <strong>Transaction Hash:</strong> {txHash}
+        <p className="break-words">
+          <strong>Transaction Hash:</strong>{' '}
+          <a
+            href={`https://testnet.xrpl.org/transactions/${txHash}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            {txHash}
+          </a>
         </p>
       )}
     </div>
