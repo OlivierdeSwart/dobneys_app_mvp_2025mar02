@@ -24,6 +24,7 @@ export default function NFTMarketplace() {
   const [search, setSearch] = useState("");
   const [nftsForSale, setNftsForSale] = useState<NFT[]>([]);
   const [transactionStatus, setTransactionStatus] = useState<string | null>(null);
+  const [transactionHash, setTransactionHash] = useState<string | null>(null);
 
   useEffect(() => {
     const results = nftLedgerData.filter(
@@ -40,23 +41,34 @@ export default function NFTMarketplace() {
       return;
     }
 
-    const amountInDrops = (parseFloat(nft.selling_price) * 1_000_000).toString();
+    // const amountInDrops = (parseFloat(nft.selling_price) * 1_000_000).toString();
+    const amountInDrops = (parseFloat(nft.selling_price) * 1).toString();
 
     isInstalled().then(async (response) => {
       if (response.result.isInstalled) {
         console.log("GemWallet detected. Initiating payment...");
+        setTransactionStatus("Transaction Initiated...");
 
         try {
           const paymentPayload = {
             amount: amountInDrops, // In drops
             destination: nft.owner_wallet,
+            // memos: [
+            //   {
+            //     memo: {
+            //       memoType: "627579696e67206e66745f6964", // "buying nft_id" in hex
+            //       memoData: Buffer.from(`buying nft_id: ${nft.nft_id}`).toString("hex"),
+            //     },
+            //   },
+            // ],
           };
 
           const transactionResponse = await sendPayment(paymentPayload);
 
           if (transactionResponse.type === "response" && transactionResponse.result?.hash) {
             console.log("Transaction Successful: ", transactionResponse.result.hash);
-            setTransactionStatus(`Transaction Hash: ${transactionResponse.result.hash}`);
+            setTransactionStatus("Transaction Completed!");
+            setTransactionHash(transactionResponse.result.hash);
           } else {
             console.error("Transaction rejected or failed.");
             setTransactionStatus("Transaction failed or rejected.");
@@ -74,18 +86,35 @@ export default function NFTMarketplace() {
 
   return (
     <div className="p-6 max-w-[1500px] mx-auto">
+      {transactionStatus && (
+        <div className="mb-4 p-4 bg-gray-100 border border-gray-300 rounded-lg">
+          <p className="text-blue-600 font-semibold">{transactionStatus}</p>
+          {transactionHash && (
+            <p>
+              Transaction Hash:{" "}
+              <a
+                href={`https://test.bithomp.com/explorer/${transactionHash}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline"
+              >
+                View on XRPL Testnet Explorer
+              </a>
+            </p>
+          )}
+        </div>
+      )}
+
       <Input
         placeholder="Search NFTs..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="mb-6 w-full p-3 border border-gray-300 rounded-lg"
       />
-      {transactionStatus && (
-        <div className="mb-4 text-center text-blue-600 font-semibold">{transactionStatus}</div>
-      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {nftsForSale.length > 0 ? (
-          nftsForSale.map((nft, index) => (
+          nftsForSale.map((nft) => (
             <Card
               key={nft.nft_id}
               className="w-full max-w-[350px] shadow-lg rounded-xl overflow-hidden border border-gray-200 transition-transform transform hover:scale-105"
