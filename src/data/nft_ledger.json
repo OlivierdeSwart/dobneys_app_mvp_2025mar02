@@ -21,7 +21,7 @@
     "nft_title": "Celebration Amidst Chaos",
     "description": "This painting depicts a vibrant procession of people and musicians, blending tradition and movement in a lively, yet turbulent scene..",
     "photo_1": "http://localhost:3000/uploads/images/painting1.jpg",
-    "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
+    "certificate_1": "",
     "seller_wallet": "",
     "artist_wallet": "",
     "meta_data": "",

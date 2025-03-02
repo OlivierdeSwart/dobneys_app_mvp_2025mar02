@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import nftLedgerData from "../../data/nft_ledger.json";
 
 type NFT = {
   owner_wallet: string;
@@ -13,44 +14,13 @@ type NFT = {
   certificate_1: string;
 };
 
-const nftLedger = [
-  {
-    owner_wallet: "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
-    nft_id: "NFT_1",
-    nft_title: "Gilded Fractures Sculpture",
-    description:
-      "This NFT represents a physical sculpture, a bust with cracks filled with gold, symbolizing the art of kintsugi—turning imperfection into beauty.",
-    photo_1: "/uploads/images/nft_1740592613651.jpg",
-    certificate_1: "/uploads/docs/certificate_of_authenticity.pdf",
-  },
-  {
-    owner_wallet: "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
-    nft_id: "NFT_2",
-    nft_title: "Celebration Amidst Chaos",
-    description:
-      "This painting depicts a vibrant procession of people and musicians, blending tradition and movement in a lively, yet turbulent scene..",
-    photo_1: "/uploads/images/painting1.jpg",
-    certificate_1: "",
-  },
-  {
-    // owner_wallet: "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
-    owner_wallet: "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
-    nft_id: "NFT_3",
-    nft_title: "Warriors of Revolution",
-    description:
-      "This painting portrays three figures in military attire, exuding strength and determination.",
-    photo_1: "/uploads/images/painting2.jpg",
-    certificate_1: "/uploads/docs/certificate_of_authenticity.pdf",
-  },
-];
-
 export default function NFTOverview() {
   const [search, setSearch] = useState("");
   const [filteredNFTs, setFilteredNFTs] = useState<NFT[]>([]);
   const [wallet, setWallet] = useState("rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief");
 
   useEffect(() => {
-    const results = nftLedger.filter(
+    const results = nftLedgerData.filter(
       (nft) =>
         nft.owner_wallet === wallet &&
         nft.nft_title.toLowerCase().includes(search.toLowerCase())
