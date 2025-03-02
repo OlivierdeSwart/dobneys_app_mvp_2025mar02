@@ -7,7 +7,7 @@ function NftCreation() {
   return (
     <>
     <div className="p-6">
-      <h1 className="text-center text-3xl font-bold mb-6">NFT Creation</h1>
+      <h1 className="text-center text-3xl font-bold mb-6">Creation</h1>
       <NFTCreationForm/>
     </div>
     </>

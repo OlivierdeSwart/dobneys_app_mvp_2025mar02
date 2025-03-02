@@ -12,6 +12,8 @@ type NFT = {
   description: string;
   photo_1: string;
   certificate_1: string;
+  for_sale: string;
+  selling_price: string;
 };
 
 export default function NFTOverview() {

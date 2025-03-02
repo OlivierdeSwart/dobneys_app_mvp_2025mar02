@@ -9,9 +9,10 @@ export default function Navbar() {
 
             {/* Center: Navigation Links */}
             <div className="flex space-x-6">
-                <Link href="/" className="hover:underline">Home</Link>
-                <Link href="/nft_creation" className="hover:underline">NFT Creation</Link>
-                <Link href="/nft_overview" className="hover:underline">NFT Overview</Link>
+                <Link href="/" className="hover:underline">NFT</Link>
+                <Link href="/nft_creation" className="hover:underline">Creation</Link>
+                <Link href="/nft_overview" className="hover:underline">Overview</Link>
+                <Link href="/nft_marketplace" className="hover:underline">Marketplace</Link>
             </div>
 
             {/* Right: Wallet Connect Button */}

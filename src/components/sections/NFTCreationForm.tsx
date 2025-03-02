@@ -8,12 +8,14 @@ import NFTMerkleRootSubmission from "./NFTMerkleRootSubmission";
 const NFTCreationForm = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [walletInstalled, setWalletInstalled] = useState<boolean | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     owner_wallet: "",
     nft_id: `NFT_${Date.now()}`,
     nft_title: "",
     description: "",
-    photo_1: null as File | null,
+    photo_1: "", // Default empty
     certificate_1: "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
     seller_wallet: "",
     artist_wallet: "",
@@ -23,6 +25,8 @@ const NFTCreationForm = () => {
     other_1: "",
     ledger_id: "",
     memo_id: "",
+    for_sale: "",
+    selling_price: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [formHash, setFormHash] = useState<string | null>(null);
@@ -31,23 +35,17 @@ const NFTCreationForm = () => {
     const checkWalletInstallation = async () => {
       try {
         const installationStatus = await isInstalled();
-        console.log("Is GemWallet installed?", installationStatus.result.isInstalled);
         setWalletInstalled(installationStatus.result.isInstalled);
-        
+
         if (installationStatus.result.isInstalled) {
           const response = await getAddress();
-          console.log("Response from getAddress:", response);
-          
           if (response.type === "response" && response.result) {
             const address = response.result.address;
-            console.log("Extracted address:", address);
             if (address) {
               setWalletAddress(address);
               setFormData((prevData) => ({ ...prevData, owner_wallet: address }));
             }
           }
-        } else {
-          console.warn("GemWallet is not installed.");
         }
       } catch (error) {
         console.error("Error checking GemWallet installation:", error);
@@ -57,24 +55,54 @@ const NFTCreationForm = () => {
     checkWalletInstallation();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // Handle form field changes
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type, files } = e.target as HTMLInputElement;
+
     if (type === "file" && files && files.length > 0) {
-      setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
+      const selectedFile = files[0];
+
+      // Upload image to API
+      setUploading(true);
+      setUploadError(null);
+
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+
+      try {
+        const uploadResponse = await fetch("/api/uploadImage", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (uploadResponse.ok) {
+          const { fileUrl } = await uploadResponse.json();
+          console.log("✅ Image uploaded successfully:", fileUrl);
+          
+          setFormData((prevData) => ({ ...prevData, photo_1: fileUrl }));
+        } else {
+          throw new Error("Upload failed. Response not OK.");
+        }
+      } catch (error) {
+        console.error("❌ Upload error:", error);
+        setUploadError("Image upload failed. Please try again.");
+      } finally {
+        setUploading(false);
+      }
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
   };
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Submitting NFT Data:", formData);
 
     // Compute SHA-256 hash
     const hash = createHash("sha256").update(JSON.stringify(formData)).digest("hex");
-    console.log("SHA-256 Hash:", hash);
     setFormHash(hash);
-    
+
     const response = await fetch("/api/addNFT", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -147,10 +175,15 @@ const NFTCreationForm = () => {
         <div>
           <label className="block font-semibold">Image Upload:</label>
           <input type="file" name="photo_1" onChange={handleChange} className="w-full p-2 border rounded" />
+          {uploading && <p className="text-blue-500">Uploading image...</p>}
+          {uploadError && <p className="text-red-500">{uploadError}</p>}
+          {formData.photo_1 && (
+            <img src={formData.photo_1} alt="NFT Preview" className="mt-2 w-32 h-32 object-cover rounded border" />
+          )}
         </div>
 
-        <button type="submit" className="w-full bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700">
-          Submit NFT
+        <button type="submit" className="w-full bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700" disabled={uploading}>
+          {uploading ? "Uploading..." : "Submit NFT"}
         </button>
       </form>
     </div>

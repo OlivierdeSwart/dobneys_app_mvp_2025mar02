@@ -13,7 +13,9 @@
     "previous_owner_2": "",
     "other_1": "",
     "ledger_id": "",
-    "memo_id": ""
+    "memo_id": "",
+    "for_sale": "",
+    "selling_price": ""
   },
   {
     "owner_wallet": "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
@@ -29,7 +31,9 @@
     "previous_owner_2": "",
     "other_1": "",
     "ledger_id": "",
-    "memo_id": ""
+    "memo_id": "",
+    "for_sale": "",
+    "selling_price": ""
   },
   {
     "owner_wallet": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
@@ -45,6 +49,80 @@
     "previous_owner_2": "",
     "other_1": "",
     "ledger_id": "",
-    "memo_id": ""
+    "memo_id": "",
+    "for_sale": "",
+    "selling_price": ""
+  },
+  {
+    "owner_wallet": "",
+    "nft_id": "NFT_1740875943652",
+    "nft_title": "",
+    "description": "",
+    "photo_1": "",
+    "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
+    "seller_wallet": "",
+    "artist_wallet": "",
+    "meta_data": "",
+    "previous_owner_1": "",
+    "previous_owner_2": "",
+    "other_1": "",
+    "ledger_id": "",
+    "memo_id": "",
+    "for_sale": "",
+    "selling_price": ""
+  },
+  {
+    "owner_wallet": "",
+    "nft_id": "NFT_1740876702459",
+    "nft_title": "",
+    "description": "",
+    "photo_1": "",
+    "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
+    "seller_wallet": "",
+    "artist_wallet": "",
+    "meta_data": "",
+    "previous_owner_1": "",
+    "previous_owner_2": "",
+    "other_1": "",
+    "ledger_id": "",
+    "memo_id": "",
+    "for_sale": "",
+    "selling_price": ""
+  },
+  {
+    "owner_wallet": "",
+    "nft_id": "NFT_1740876771218",
+    "nft_title": "joe",
+    "description": "",
+    "photo_1": "",
+    "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
+    "seller_wallet": "",
+    "artist_wallet": "",
+    "meta_data": "",
+    "previous_owner_1": "",
+    "previous_owner_2": "",
+    "other_1": "",
+    "ledger_id": "",
+    "memo_id": "",
+    "for_sale": "",
+    "selling_price": ""
+  },
+  {
+    "owner_wallet": "",
+    "nft_id": "NFT_1740877322637",
+    "nft_title": "bla",
+    "description": "",
+    "photo_1": "/uploads/images/nft_1740877337355.jpg",
+    "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
+    "seller_wallet": "",
+    "artist_wallet": "",
+    "meta_data": "",
+    "previous_owner_1": "",
+    "previous_owner_2": "",
+    "other_1": "",
+    "ledger_id": "",
+    "memo_id": "",
+    "for_sale": "",
+    "selling_price": ""
   }
 ]
