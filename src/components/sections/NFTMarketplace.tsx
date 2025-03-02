@@ -6,8 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { isInstalled, sendPayment } from "@gemwallet/api";
+import { createHash } from "crypto"; // ✅ Import crypto for SHA-256 hashing
 import nftLedgerData from "../../data/nft_ledger.json";
-import { createHash } from "crypto";
+import NFTMarketplace_2 from "./NFTMarketplace_2";
 
 type NFT = {
   owner_wallet: string;
@@ -122,6 +123,15 @@ export default function NFTMarketplace() {
 
             console.log("📌 Sending JSON to API:", JSON.stringify(settlementEntry, null, 2));
 
+            // ✅ Compute SHA-256 hash of the settlement JSON
+            const settlementHash = createHash("sha256")
+              .update(JSON.stringify(settlementEntry))
+              .digest("hex");
+            console.log("🔑 SHA-256 Hash of Settlement Entry:", settlementHash);
+
+            // ✅ Store log with hash for frontend display
+            setSettlementLog({ ...settlementEntry, sha256: settlementHash });
+
             // ✅ Send settlement entry to API route
             const response = await fetch("/api/addSettlement", {
               method: "POST",
@@ -134,8 +144,6 @@ export default function NFTMarketplace() {
 
             if (response.ok) {
               console.log("✅ Settlement entry successfully added to ledger.");
-              // ✅ Set the settlement log for UI display
-              setSettlementLog(settlementEntry);
             } else {
               console.error("❌ Failed to update settlement ledger:", responseData);
             }
@@ -181,6 +189,12 @@ export default function NFTMarketplace() {
         <div className="mb-4 p-4 bg-gray-200 border border-gray-400 rounded-lg">
           <h3 className="text-lg font-bold mb-2">Settlement Log</h3>
           <pre className="text-sm bg-white p-2 rounded-md border">{JSON.stringify(settlementLog, null, 2)}</pre>
+          {settlementLog?.sha256 && (
+            <p className="text-sm text-gray-700 mt-2">
+              <strong>Merkle Tree Root:</strong> {settlementLog.sha256}
+            </p>
+          )}
+        <NFTMarketplace_2 />
         </div>
       )}
 

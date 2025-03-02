@@ -92,5 +92,52 @@
       "transaction_status": "",
       "validated": false
     }
+  },
+  {
+    "part_a": {
+      "transaction_id": "8A66B3BF7ECCB494643BD1F0F1ECA21E031E9321BA9CB480D83E6D36913DC4E3",
+      "regarding_nft_id": "NFT_3",
+      "transaction_type": "nft purchase",
+      "timestamp": "2025-03-02T03:18:41.876Z",
+      "network": "XRPL",
+      "sender": {
+        "wallet_address": "",
+        "iban_hash": "",
+        "swift_bic": "",
+        "bank_name": "",
+        "country": "",
+        "currency": "",
+        "balance_before": "",
+        "balance_after": ""
+      },
+      "recipient": {
+        "wallet_address": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
+        "iban_hash": "",
+        "swift_bic": "",
+        "bank_name": "",
+        "country": "",
+        "currency": ""
+      },
+      "pool_wallet": "",
+      "amount": {
+        "value": "",
+        "currency": "",
+        "converted_value": "",
+        "converted_currency": "",
+        "exchange_rate": ""
+      },
+      "fees": {
+        "total": "",
+        "currency": "",
+        "breakdown": {
+          "bank_fee": "",
+          "intermediary_fee": "",
+          "recipient_bank_fee": ""
+        }
+      },
+      "reference": "",
+      "transaction_status": "",
+      "validated": false
+    }
   }
 ]
