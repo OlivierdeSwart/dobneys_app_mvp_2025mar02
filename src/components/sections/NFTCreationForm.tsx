@@ -18,6 +18,7 @@ const NFTCreationForm = () => {
     photo_1: "", // Default empty
     certificate_1: "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
     seller_wallet: "",
+    artist_name: "",
     artist_wallet: "",
     meta_data: "",
     previous_owner_1: "",
@@ -165,6 +166,11 @@ const NFTCreationForm = () => {
         <div>
           <label className="block font-semibold">Memo ID:</label>
           <input type="text" name="memo_id" value={formData.memo_id} onChange={handleChange} className="w-full p-2 border rounded" />
+        </div>
+
+        <div>
+          <label className="block font-semibold">Artist Name:</label>
+          <input type="text" name="memo_id" value={formData.artist_name} onChange={handleChange} className="w-full p-2 border rounded" />
         </div>
 
         <div>
