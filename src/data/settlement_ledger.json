@@ -1,0 +1,96 @@
+[
+  {
+    "part_a": {
+      "transaction_id": "1",
+      "transaction_goal": "",
+      "timestamp": "",
+      "network": "",
+      "transaction_type": "",
+      "sender": {
+        "wallet_address": "",
+        "iban_hash": "",
+        "swift_bic": "",
+        "bank_name": "",
+        "country": "",
+        "currency": "",
+        "balance_before": "",
+        "balance_after": ""
+      },
+      "recipient": {
+        "wallet_address": "",
+        "iban_hash": "",
+        "swift_bic": "",
+        "bank_name": "",
+        "country": "",
+        "currency": ""
+      },
+      "pool_wallet": "",
+      "amount": {
+        "value": "",
+        "currency": "",
+        "converted_value": "",
+        "converted_currency": "",
+        "exchange_rate": ""
+      },
+      "fees": {
+        "total": "",
+        "currency": "",
+        "breakdown": {
+          "bank_fee": "",
+          "intermediary_fee": "",
+          "recipient_bank_fee": ""
+        }
+      },
+      "reference": "",
+      "transaction_status": "",
+      "validated": false
+    }
+  },
+  {
+    "part_a": {
+      "transaction_id": "3FC999B05195CBA26BFE635A5DB73C1A1490D39DA10D9120FDDBDB94504C3D42",
+      "regarding_nft_id": "NFT_3",
+      "transaction_type": "nft purchase",
+      "timestamp": "2025-03-02T03:13:53.484Z",
+      "network": "XRPL",
+      "sender": {
+        "wallet_address": "",
+        "iban_hash": "",
+        "swift_bic": "",
+        "bank_name": "",
+        "country": "",
+        "currency": "",
+        "balance_before": "",
+        "balance_after": ""
+      },
+      "recipient": {
+        "wallet_address": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
+        "iban_hash": "",
+        "swift_bic": "",
+        "bank_name": "",
+        "country": "",
+        "currency": ""
+      },
+      "pool_wallet": "",
+      "amount": {
+        "value": "",
+        "currency": "",
+        "converted_value": "",
+        "converted_currency": "",
+        "exchange_rate": ""
+      },
+      "fees": {
+        "total": "",
+        "currency": "",
+        "breakdown": {
+          "bank_fee": "",
+          "intermediary_fee": "",
+          "recipient_bank_fee": ""
+        }
+      },
+      "reference": "",
+      "transaction_status": "",
+      "validated": false
+    }
+  }
+]
