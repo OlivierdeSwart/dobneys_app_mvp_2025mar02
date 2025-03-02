@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,6 +11,7 @@ type NFT = {
   owner_wallet: string;
   nft_id: string;
   nft_title: string;
+  artist_name: string;
   description: string;
   photo_1: string;
   certificate_1: string;
@@ -32,7 +35,6 @@ export default function NFTOverview() {
 
   return (
     <div className="p-6 max-w-[1500px] mx-auto">
-      {/* <h1 className="text-2xl font-bold mb-4">NFT Overview</h1> */}
       <Input
         placeholder="Search NFTs..."
         value={search}
@@ -56,7 +58,9 @@ export default function NFTOverview() {
             />
             <CardContent className="p-4">
               <h2 className="text-lg font-semibold">{nft.nft_title}</h2>
-              <p className="text-sm text-gray-600">{nft.description}</p>
+              <p className="text-sm text-gray-500 italic">By {nft.artist_name || "Unknown Artist"}</p>
+              <p className="text-sm text-gray-600 mt-2">{nft.description}</p>
+              
               {nft.certificate_1 ? (
                 <a
                   href={nft.certificate_1}
@@ -85,6 +89,7 @@ export default function NFTOverview() {
             </CardContent>
           </Card>
         ))}
-      </div>    </div>
+      </div>
+    </div>
   );
 }

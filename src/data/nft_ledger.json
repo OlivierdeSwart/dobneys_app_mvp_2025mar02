@@ -2,7 +2,7 @@
   {
     "owner_wallet": "rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief",
     "nft_id": "NFT_1",
-    "nft_title": "Gilded Fractures Sculpture",
+    "nft_title": "Gilded Fractures",
     "description": "This NFT represents a physical sculpture, a bust with cracks filled with gold, symbolizing the art of kintsugi—turning imperfection into beauty.",
     "photo_1": "http://localhost:3000/uploads/images/nft_1740592613651.jpg",
     "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
@@ -53,8 +53,8 @@
     "other_1": "",
     "ledger_id": "",
     "memo_id": "",
-    "for_sale": "",
-    "selling_price": ""
+    "for_sale": "yes",
+    "selling_price": "2"
   },
   {
     "owner_wallet": "",
@@ -78,7 +78,7 @@
   {
     "owner_wallet": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
     "nft_id": "marketplace_nft_1",
-    "nft_title": "Filler NFT",
+    "nft_title": "Bored Babes 1",
     "description": "Bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla",
     "photo_1": "/uploads/images/nft_1740877337355.jpg",
     "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
@@ -97,7 +97,7 @@
   {
     "owner_wallet": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
     "nft_id": "marketplace_nft_2",
-    "nft_title": "Filler NFT",
+    "nft_title": "Bored Babes 2",
     "description": "Bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla",
     "photo_1": "/uploads/images/nft_1740877337355.jpg",
     "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
@@ -116,7 +116,7 @@
   {
     "owner_wallet": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
     "nft_id": "marketplace_nft_3",
-    "nft_title": "Filler NFT",
+    "nft_title": "Bored Babes 3",
     "description": "Bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla",
     "photo_1": "/uploads/images/nft_1740877337355.jpg",
     "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
@@ -135,7 +135,7 @@
   {
     "owner_wallet": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
     "nft_id": "marketplace_nft_4",
-    "nft_title": "Filler NFT",
+    "nft_title": "Bored Babes 4",
     "description": "Bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla",
     "photo_1": "/uploads/images/nft_1740877337355.jpg",
     "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",
@@ -154,7 +154,7 @@
   {
     "owner_wallet": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
     "nft_id": "marketplace_nft_5",
-    "nft_title": "Filler NFT",
+    "nft_title": "Bored Babes 5",
     "description": "Bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla and bla",
     "photo_1": "/uploads/images/nft_1740877337355.jpg",
     "certificate_1": "http://localhost:3000/uploads/docs/certificate_of_authenticity.pdf",

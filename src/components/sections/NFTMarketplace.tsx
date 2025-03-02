@@ -5,12 +5,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { isInstalled, sendPayment } from "@gemwallet/api";
 import nftLedgerData from "../../data/nft_ledger.json";
 
 type NFT = {
   owner_wallet: string;
   nft_id: string;
   nft_title: string;
+  artist_name: string;
   description: string;
   photo_1: string;
   certificate_1: string;
@@ -21,6 +23,7 @@ type NFT = {
 export default function NFTMarketplace() {
   const [search, setSearch] = useState("");
   const [nftsForSale, setNftsForSale] = useState<NFT[]>([]);
+  const [transactionStatus, setTransactionStatus] = useState<string | null>(null);
 
   useEffect(() => {
     const results = nftLedgerData.filter(
@@ -31,15 +34,55 @@ export default function NFTMarketplace() {
     setNftsForSale(results);
   }, [search]);
 
+  const handleBuyNow = async (nft: NFT) => {
+    if (!nft.selling_price || isNaN(parseFloat(nft.selling_price))) {
+      console.error("Invalid selling price.");
+      return;
+    }
+
+    const amountInDrops = (parseFloat(nft.selling_price) * 1_000_000).toString();
+
+    isInstalled().then(async (response) => {
+      if (response.result.isInstalled) {
+        console.log("GemWallet detected. Initiating payment...");
+
+        try {
+          const paymentPayload = {
+            amount: amountInDrops, // In drops
+            destination: nft.owner_wallet,
+          };
+
+          const transactionResponse = await sendPayment(paymentPayload);
+
+          if (transactionResponse.type === "response" && transactionResponse.result?.hash) {
+            console.log("Transaction Successful: ", transactionResponse.result.hash);
+            setTransactionStatus(`Transaction Hash: ${transactionResponse.result.hash}`);
+          } else {
+            console.error("Transaction rejected or failed.");
+            setTransactionStatus("Transaction failed or rejected.");
+          }
+        } catch (error) {
+          console.error("Error sending payment:", error);
+          setTransactionStatus("Error processing transaction.");
+        }
+      } else {
+        console.warn("GemWallet is not installed.");
+        setTransactionStatus("GemWallet not detected. Install the extension.");
+      }
+    });
+  };
+
   return (
     <div className="p-6 max-w-[1500px] mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-center">NFT Marketplace</h1>
       <Input
         placeholder="Search NFTs..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="mb-6 w-full p-3 border border-gray-300 rounded-lg"
       />
+      {transactionStatus && (
+        <div className="mb-4 text-center text-blue-600 font-semibold">{transactionStatus}</div>
+      )}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {nftsForSale.length > 0 ? (
           nftsForSale.map((nft, index) => (
@@ -56,6 +99,7 @@ export default function NFTMarketplace() {
               />
               <CardContent className="p-4">
                 <h2 className="text-lg font-semibold">{nft.nft_title}</h2>
+                <p className="text-sm text-gray-500 italic">By {nft.artist_name || "Unknown Artist"}</p>
                 <p className="text-sm text-gray-600">{nft.description}</p>
 
                 {nft.certificate_1 ? (
@@ -74,7 +118,10 @@ export default function NFTMarketplace() {
                   <span className="text-lg font-bold text-green-600">
                     {nft.selling_price} XRP
                   </span>
-                  <Button className="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">
+                  <Button
+                    onClick={() => handleBuyNow(nft)}
+                    className="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700"
+                  >
                     Buy Now
                   </Button>
                 </div>
