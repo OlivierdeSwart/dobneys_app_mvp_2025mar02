@@ -41,6 +41,7 @@ export default function NFTMarketplace() {
       return;
     }
 
+    // During development, use 1:1 ratio for drops
     // const amountInDrops = (parseFloat(nft.selling_price) * 1_000_000).toString();
     const amountInDrops = (parseFloat(nft.selling_price) * 1).toString();
 
@@ -53,14 +54,13 @@ export default function NFTMarketplace() {
           const paymentPayload = {
             amount: amountInDrops, // In drops
             destination: nft.owner_wallet,
-            // memos: [
-            //   {
-            //     memo: {
-            //       memoType: "627579696e67206e66745f6964", // "buying nft_id" in hex
-            //       memoData: Buffer.from(`buying nft_id: ${nft.nft_id}`).toString("hex"),
-            //     },
-            //   },
-            // ],
+            memos: [
+              {
+                memo: {
+                  memoData: Buffer.from(nft.nft_id).toString("hex"), // NFT ID converted to hexadecimal
+                },
+              },
+            ],
           };
 
           const transactionResponse = await sendPayment(paymentPayload);
@@ -93,7 +93,7 @@ export default function NFTMarketplace() {
             <p>
               Transaction Hash:{" "}
               <a
-                href={`https://test.bithomp.com/explorer/${transactionHash}`}
+                href={`https://testnet.xrpl.org/transactions/${transactionHash}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 underline"
